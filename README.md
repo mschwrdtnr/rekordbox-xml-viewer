@@ -1,23 +1,26 @@
 # Rekordbox XML Library Viewer
 
-Eine einfache Website, um eine `rekordbox.xml` lokal im Browser zu laden und folgende Daten sichtbar zu machen:
+A simple website to load a `rekordbox.xml` in the browser and browse your library. Hosted on GitHub Pages — no setup required, works on mobile too.
 
-- komplette Track-Library (inkl. Properties wie Titel, Artist, Album, Genre, BPM, Tonart, Rating, Dauer, Dateipfad)
-- Playlist-Struktur (Ordner + Playlists inkl. Track-Anzahl)
+## Features
 
-## Starten
+- **Track library** with all properties: title, artist, album, genre, BPM, key, bitrate, duration, file path
+- **Playlist structure** — folders and playlists with track counts, collapsible
+- **"All Tracks"** view across the entire library
+- **Column sorting** by clicking headers (ascending/descending, third click resets)
+- **Search** within a playlist
 
-Da es eine statische Website ist, reicht ein einfacher HTTP-Server:
+## Local Development
+
+As it's a static website, a simple HTTP server is enough:
 
 ```bash
-python3 -m http.server 8000
+python -m http.server 8000
 ```
 
-Danach im Browser öffnen:
+Then open in your browser: `http://localhost:8000`
 
-- `http://localhost:8000`
+## Next Steps
 
-## Nächste Ausbaustufe
-
-Die aktuelle Version fokussiert auf das **Lesen und Anzeigen** der XML.
-Als nächster Schritt kann die Datenstruktur um Edit-Funktionen erweitert werden, um anschließend eine neue XML für den Re-Import in Rekordbox zu exportieren.
+The current version focuses on **reading and displaying** the XML.
+The next step could be adding edit functionality to export a new XML for re-import into Rekordbox.

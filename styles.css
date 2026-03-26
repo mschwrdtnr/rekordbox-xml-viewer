@@ -15,9 +15,8 @@ body {
 }
 
 .container {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 2rem 1rem 3rem;
+  min-width: fit-content;
+  padding: 2rem 1.5rem 3rem;
 }
 
 h1 {
@@ -30,6 +29,7 @@ h1 {
 
 h2 {
   margin-top: 0;
+  margin-bottom: 0.75rem;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -44,6 +44,28 @@ h2 {
   padding: 1rem;
   margin-bottom: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.top-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.top-row .card {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.top-row .upload {
+  flex: 0 0 300px;
+}
+
+.top-row .overview {
+  flex: 1;
+  min-width: 160px;
 }
 
 .upload input {
@@ -71,12 +93,12 @@ h2 {
 }
 
 .table-wrap {
-  overflow-x: auto;
   margin-top: 0.75rem;
 }
 
 table {
-  width: 100%;
+  width: auto;
+  min-width: 100%;
   border-collapse: collapse;
   font-size: 0.875rem;
 }
@@ -103,6 +125,30 @@ td {
 
 tbody tr:hover td {
   background: #1a2535;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 2rem;
+  white-space: nowrap;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  max-width: 160px;
+  word-break: break-word;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  max-width: 140px;
+  word-break: break-word;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  max-width: 120px;
+  word-break: break-word;
 }
 
 code {
@@ -165,10 +211,15 @@ ul.playlist-tree li {
   padding: 0 4px;
 }
 
+#playlistsSection {
+  overflow-x: auto;
+}
+
 .playlists-layout {
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
+  min-width: max-content;
 }
 
 .playlists-tree-panel {
@@ -183,7 +234,6 @@ ul.playlist-tree li {
 
 .playlist-detail-panel {
   flex: 1;
-  overflow-x: auto;
   min-width: 0;
   min-height: 80px;
 }
