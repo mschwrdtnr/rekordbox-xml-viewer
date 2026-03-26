@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rekordbox XML Library Viewer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Rekordbox XML Library Viewer</h1>
+      <p>
+        Upload a <code>rekordbox.xml</code> file to view tracks and playlists
+        including metadata.
+      </p>
+
+      <section class="card upload">
+        <label for="xmlFile">Rekordbox XML File</label>
+        <input id="xmlFile" type="file" accept=".xml,text/xml" />
+        <p id="status" class="status">No file loaded yet.</p>
+      </section>
+
+      <section class="card overview" id="overview" hidden>
+        <h2>Overview</h2>
+        <ul>
+          <li><strong>Tracks:</strong> <span id="trackCount">0</span></li>
+          <li><strong>Playlists:</strong> <span id="playlistCount">0</span></li>
+        </ul>
+      </section>
+
+      <section class="card" id="playlistsSection" hidden>
+        <h2>Playlists</h2>
+        <div class="playlists-layout">
+          <div id="playlists" class="playlists-tree-panel"></div>
+          <div id="playlistDetail" class="playlist-detail-panel">
+            <p class="playlist-detail-hint">Select a playlist to view its tracks.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
