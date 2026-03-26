@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light;
+  color-scheme: dark;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.4;
 }
@@ -10,8 +10,8 @@
 
 body {
   margin: 0;
-  background: #f5f7fb;
-  color: #1f2937;
+  background: #0d1117;
+  color: #dde3ed;
 }
 
 .container {
@@ -20,40 +20,54 @@ body {
   padding: 2rem 1rem 3rem;
 }
 
-h1,
+h1 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #f1f5f9;
+}
+
 h2 {
   margin-top: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5b7089;
 }
 
 .card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  background: #161d2b;
+  border: 1px solid #1e2d3d;
+  border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .upload input {
   width: 100%;
   margin-top: 0.5rem;
   padding: 0.6rem;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid #2a3a4d;
+  border-radius: 6px;
+  background: #0d1117;
+  color: #dde3ed;
 }
 
 .status {
   margin-top: 0.75rem;
-  font-size: 0.95rem;
-  color: #4b5563;
+  font-size: 0.875rem;
+  color: #5b7089;
 }
 
 .status.error {
-  color: #b91c1c;
+  color: #f87171;
 }
 
 .status.success {
-  color: #166534;
+  color: #34d399;
 }
 
 .table-wrap {
@@ -64,21 +78,39 @@ h2 {
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
 }
 
-th,
-td {
+th {
   padding: 0.5rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #1e2d3d;
   text-align: left;
   vertical-align: top;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #5b7089;
+}
+
+td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #141c28;
+  text-align: left;
+  vertical-align: top;
+  color: #c2cad8;
+}
+
+tbody tr:hover td {
+  background: #1a2535;
 }
 
 code {
-  background: #eef2ff;
+  background: #1a2d44;
+  color: #7db8f5;
   padding: 0.1rem 0.35rem;
-  border-radius: 5px;
+  border-radius: 4px;
+  font-size: 0.875em;
 }
 
 ul.playlist-tree {
@@ -94,6 +126,8 @@ ul.playlist-tree li {
   font-weight: 600;
   cursor: pointer;
   user-select: none;
+  color: #8892a4;
+  font-size: 0.875rem;
 }
 
 .playlist-folder::before {
@@ -114,18 +148,19 @@ ul.playlist-tree li {
 }
 
 .playlist-leaf {
-  color: #334155;
+  color: #7a8899;
   cursor: pointer;
+  font-size: 0.875rem;
 }
 
 .playlist-leaf:hover {
-  color: #1d4ed8;
+  color: #5b9cf6;
 }
 
 .playlist-leaf--active {
-  color: #1d4ed8;
+  color: #5b9cf6;
   font-weight: 600;
-  background: #eff6ff;
+  background: rgba(91, 156, 246, 0.1);
   border-radius: 4px;
   padding: 0 4px;
 }
@@ -142,7 +177,7 @@ ul.playlist-tree li {
   flex-shrink: 0;
   overflow-y: auto;
   max-height: 65vh;
-  border-right: 1px solid #e5e7eb;
+  border-right: 1px solid #1e2d3d;
   padding-right: 1rem;
 }
 
@@ -156,7 +191,7 @@ ul.playlist-tree li {
 .playlist-detail-panel h3 {
   margin-top: 0;
   font-size: 1rem;
-  color: #1f2937;
+  color: #dde3ed;
 }
 
 .detail-header {
@@ -170,22 +205,28 @@ ul.playlist-tree li {
 .detail-header h3 {
   margin: 0;
   font-size: 1rem;
-  color: #1f2937;
+  color: #dde3ed;
   flex-shrink: 0;
 }
 
 .detail-search {
   padding: 0.4rem 0.65rem;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid #2a3a4d;
+  border-radius: 6px;
   font-size: 0.875rem;
   width: 220px;
   outline: none;
+  background: #0d1117;
+  color: #dde3ed;
+}
+
+.detail-search::placeholder {
+  color: #4a5a6b;
 }
 
 .detail-search:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  border-color: #5b9cf6;
+  box-shadow: 0 0 0 2px rgba(91, 156, 246, 0.15);
 }
 
 th.sortable {
@@ -195,7 +236,7 @@ th.sortable {
 }
 
 th.sortable:hover {
-  background: #f1f5f9;
+  color: #8892a4;
 }
 
 th.sortable::after {
@@ -207,33 +248,28 @@ th.sortable::after {
 th.sort-asc::after {
   content: ' ↑';
   opacity: 1;
-  color: #6366f1;
+  color: #5b9cf6;
 }
 
 th.sort-desc::after {
   content: ' ↓';
   opacity: 1;
-  color: #6366f1;
+  color: #5b9cf6;
 }
 
 .playlist-detail-hint {
-  color: #9ca3af;
+  color: #3d4f61;
   font-style: italic;
   margin: 0;
 }
 
 @media (max-width: 640px) {
   .playlists-layout {
-    flex-direction: column;
+    gap: 0.75rem;
   }
 
   .playlists-tree-panel {
-    min-width: unset;
-    max-width: unset;
-    max-height: 40vh;
-    border-right: none;
-    border-bottom: 1px solid #e5e7eb;
-    padding-right: 0;
-    padding-bottom: 1rem;
+    min-width: 140px;
+    max-width: 180px;
   }
 }
