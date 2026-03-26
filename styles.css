@@ -149,6 +149,7 @@ ul.playlist-tree li {
 .playlist-detail-panel {
   flex: 1;
   overflow-x: auto;
+  min-width: 0;
   min-height: 80px;
 }
 
@@ -219,4 +220,20 @@ th.sort-desc::after {
   color: #9ca3af;
   font-style: italic;
   margin: 0;
+}
+
+@media (max-width: 640px) {
+  .playlists-layout {
+    flex-direction: column;
+  }
+
+  .playlists-tree-panel {
+    min-width: unset;
+    max-width: unset;
+    max-height: 40vh;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+    padding-right: 0;
+    padding-bottom: 1rem;
+  }
 }
