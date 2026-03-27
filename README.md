@@ -12,13 +12,20 @@ A simple website to load a `rekordbox.xml` in the browser and browse your librar
 
 ## Local Development
 
-As it's a static website, a simple HTTP server is enough:
-
 ```bash
-python -m http.server 8000
+npm install
+npm run dev
 ```
 
-Then open in your browser: `http://localhost:8000`
+### Commands
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start Vite dev server with hot-reload |
+| `npm run build` | Build for production into `dist/` |
+| `npm test` | Run unit tests (Vitest) |
+| `npm run lint` | Lint and check formatting (Biome) |
+| `npm run format` | Auto-fix lint and formatting issues |
 
 ## Next Steps
 
