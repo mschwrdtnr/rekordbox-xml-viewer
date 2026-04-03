@@ -17,6 +17,14 @@ export function durationToSeconds(dur) {
   return (mins || 0) * 60 + (secs || 0);
 }
 
+export function debounce(fn, ms) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), ms);
+  };
+}
+
 export function decodeLocation(location) {
   if (!location) return "";
 

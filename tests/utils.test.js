@@ -1,5 +1,6 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
+  debounce,
   decodeLocation,
   durationToSeconds,
   formatDuration,
@@ -69,5 +70,47 @@ describe("decodeLocation", () => {
 
   it("returns path as-is when decoding fails", () => {
     expect(decodeLocation("file://localhost/%ZZ")).toBe("%ZZ");
+  });
+});
+
+describe("debounce", () => {
+  it("delays execution until after the wait period", () => {
+    vi.useFakeTimers();
+    const fn = vi.fn();
+    const debounced = debounce(fn, 150);
+
+    debounced();
+    expect(fn).not.toHaveBeenCalled();
+
+    vi.advanceTimersByTime(150);
+    expect(fn).toHaveBeenCalledTimes(1);
+    vi.useRealTimers();
+  });
+
+  it("resets the timer on repeated calls", () => {
+    vi.useFakeTimers();
+    const fn = vi.fn();
+    const debounced = debounce(fn, 150);
+
+    debounced();
+    vi.advanceTimersByTime(100);
+    debounced();
+    vi.advanceTimersByTime(100);
+    expect(fn).not.toHaveBeenCalled();
+
+    vi.advanceTimersByTime(50);
+    expect(fn).toHaveBeenCalledTimes(1);
+    vi.useRealTimers();
+  });
+
+  it("passes arguments to the original function", () => {
+    vi.useFakeTimers();
+    const fn = vi.fn();
+    const debounced = debounce(fn, 100);
+
+    debounced("a", "b");
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledWith("a", "b");
+    vi.useRealTimers();
   });
 });

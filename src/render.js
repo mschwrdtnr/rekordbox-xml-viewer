@@ -1,4 +1,4 @@
-import { durationToSeconds } from "./utils.js";
+import { debounce, durationToSeconds } from "./utils.js";
 
 const DETAIL_COLUMNS = [
   { label: "#", key: null, getValue: (_track, index) => index + 1 },
@@ -86,24 +86,41 @@ function createPlaylistNodeElement(node, state) {
 }
 
 function renderPlaylistDetail(panel, node, state, filterQuery = "") {
-  panel.innerHTML = "";
+  let searchInput = panel.querySelector(".detail-search");
 
-  const header = document.createElement("div");
-  header.className = "detail-header";
+  if (!searchInput) {
+    panel.innerHTML = "";
 
-  const heading = document.createElement("h3");
-  const icon = node.isAllTracks ? "🎶" : "🎵";
-  heading.textContent = `${icon} ${node.name}`;
-  header.appendChild(heading);
+    const header = document.createElement("div");
+    header.className = "detail-header";
 
-  const searchInput = document.createElement("input");
-  searchInput.type = "search";
-  searchInput.className = "detail-search";
-  searchInput.placeholder = "Search in playlist...";
+    const heading = document.createElement("h3");
+    const icon = node.isAllTracks ? "🎶" : "🎵";
+    heading.textContent = `${icon} ${node.name}`;
+    header.appendChild(heading);
+
+    searchInput = document.createElement("input");
+    searchInput.type = "search";
+    searchInput.className = "detail-search";
+    searchInput.placeholder = "Search in playlist...";
+    header.appendChild(searchInput);
+
+    panel.appendChild(header);
+
+    const debouncedRender = debounce(
+      () => renderPlaylistDetail(panel, node, state, searchInput.value.trim()),
+      150,
+    );
+    searchInput.addEventListener("input", debouncedRender);
+  }
+
   searchInput.value = filterQuery;
-  header.appendChild(searchInput);
 
-  panel.appendChild(header);
+  const existingContent = panel.querySelector(".detail-content");
+  if (existingContent) existingContent.remove();
+
+  const content = document.createElement("div");
+  content.className = "detail-content";
 
   let tracks = node.isAllTracks
     ? [...state.allTracks]
@@ -144,10 +161,8 @@ function renderPlaylistDetail(panel, node, state, filterQuery = "") {
       ? "No tracks match your search."
       : "No tracks in this playlist.";
     hint.className = "playlist-detail-hint";
-    panel.appendChild(hint);
-    searchInput.addEventListener("input", () =>
-      renderPlaylistDetail(panel, node, state, searchInput.value.trim()),
-    );
+    content.appendChild(hint);
+    panel.appendChild(content);
     return;
   }
 
@@ -202,9 +217,6 @@ function renderPlaylistDetail(panel, node, state, filterQuery = "") {
   table.appendChild(tbody);
 
   wrap.appendChild(table);
-  panel.appendChild(wrap);
-
-  searchInput.addEventListener("input", () =>
-    renderPlaylistDetail(panel, node, state, searchInput.value.trim()),
-  );
+  content.appendChild(wrap);
+  panel.appendChild(content);
 }
